@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KiR3 Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="title">@KiR3 Portfolio</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about" data-key="nav-about">O mnie</a></li>
+          <li><a href="#services" data-key="nav-services">Usługi</a></li>
+          <li><a href="#pricing" data-key="nav-pricing">Cennik</a></li>
+          <li><a href="#contact" data-key="nav-contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switch">
+        <button id="pl" class="lang-btn active">PL</button>
+        <button id="en" class="lang-btn">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="home" class="hero fade-in">
+      <div class="hero-inner">
+        <div class="hero-text" data-key="welcome">Witaj, szukasz grafika?</div>
+        <div class="hero-text" data-key="headline">Dobrze trafiłeś, chętnie nim zostanę.</div>
+      </div>
+    </section>
+
+    <section id="about" class="section fade-in">
+      <h2 data-key="about-title">O mnie</h2>
+      <p data-key="about-text">
+        Jestem grafikiem komputerowym. Tworzę różnego rodzaju projekty graficzne — miniaturki, banery, logotypy oraz inne grafiki.
+        Każdą pracę traktuję indywidualnie, z pełnym zaangażowaniem i dbałością o szczegóły, tak aby idealnie odpowiadała potrzebom klienta. 
+      </p>
+    </section>
+
+    <!-- 🌐 Nowy przycisk portfolio -->
+    <section id="portfolio-button-section" class="section fade-in">
+      <div class="center">
+        <button id="open-portfolio" class="portfolio-btn" data-key="portfolio-open">Zobacz portfolio</button>
+      </div>
+    </section>
+
+    <section class="two-columns fade-in">
+      <div id="services" class="column">
+        <h2 data-key="services-title">Usługi</h2>
+        <ul class="vertical-list">
+          <li data-key="service-thumbnail">Miniatura</li>
+          <li data-key="service-banner">Baner</li>
+          <li data-key="service-logo">Logo</li>
+          <li data-key="service-profile">Profilowe</li>
+        </ul>
+      </div>
+
+      <div id="pricing" class="column">
+        <h2 data-key="pricing-title">Cennik</h2>
+        <ul class="vertical-list pricing-list">
+          <li data-key="price-thumbnail">Miniatura — <span>30-60 zł</span></li>
+          <li data-key="price-banner">Baner — <span>40-100 zł</span></li>
+          <li data-key="price-logo">Logo — <span>80-200 zł</span></li>
+          <li data-key="price-profile">Profilowe — <span>20-60 zł</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section fade-in">
+      <h2 data-key="contact-title">Kontakt</h2>
+      <p data-key="contact-info">
+        Napisz do mnie: <a href="mailto:H6zardzista@gmail.com">H6zardzista@gmail.com</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- 💼 Strona portfolio (ukryta) -->
+  <section id="portfolio-page" class="portfolio-page hidden">
+    <button id="back-btn" class="back-btn" data-key="portfolio-back">Wróć</button>
+    <h2 data-key="portfolio-title">Portfolio</h2>
+
+    <div class="portfolio-table">
+      <h3 data-key="portfolio-miniatures">Miniaturki:</h3>
+      <div class="table-placeholder">[Tutaj dodaj swoje miniaturki]</div>
+    </div>
+
+    <div class="portfolio-table">
+      <h3 data-key="portfolio-banners">Bannery:</h3>
+      <div class="table-placeholder">[Tutaj dodaj swoje bannery]</div>
+    </div>
+
+    <div class="portfolio-table">
+      <h3 data-key="portfolio-logos">Loga:</h3>
+      <div class="table-placeholder">[Tutaj dodaj swoje loga]</div>
+    </div>
+
+    <div class="portfolio-table">
+      <h3 data-key="portfolio-profiles">Profilowe:</h3>
+      <div class="table-placeholder">[Tutaj dodaj swoje profilowe]</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 KiR3 — Portfolio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
