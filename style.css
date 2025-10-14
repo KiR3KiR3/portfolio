@@ -473,3 +473,18 @@ p {
     justify-content: flex-start;
   }
 }
+
+// === 🔹 HAMBURGER MENU SCRIPT ===
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const nav = document.querySelector("nav");
+  const langSwitch = document.querySelector(".lang-switch");
+
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      nav.classList.toggle("active");
+      langSwitch.classList.toggle("active");
+    });
+  }
+});
