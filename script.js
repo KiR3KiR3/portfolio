@@ -192,3 +192,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// === 🔹 HAMBURGER MENU ===
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+const langSwitch = document.getElementById("lang-switch");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("show");
+  langSwitch.classList.toggle("show");
+});
+
+// Zamknij menu po kliknięciu w link
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("show");
+    langSwitch.classList.remove("show");
+  });
+});
