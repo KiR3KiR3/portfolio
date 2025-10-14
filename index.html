@@ -8,27 +8,33 @@
 </head>
 <body>
   <header>
-    <div class="nav">
-      <div class="brand">
-        <div class="title">@KiR3 Portfolio</div>
-      </div>
-
-      <!-- 🔹 Hamburger menu -->
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <nav>
-        <ul>
-          <li><a href="#about" data-key="nav-about">O mnie</a></li>
-          <li><a href="#services-pricing" data-key="nav-services-pricing">Usługi i Cennik</a></li>
-          <li><a href="#contact" data-key="nav-contact">Kontakt</a></li>
-        </ul>
-      </nav>
+  <div class="nav">
+    <div class="brand">
+      <div class="title">@KiR3 Portfolio</div>
     </div>
-  </header>
+
+    <!-- 🔹 Hamburger menu (pojawi się na telefonie) -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="#about" data-key="nav-about">O mnie</a></li>
+        <li><a href="#services-pricing" data-key="nav-services-pricing">Usługi i Cennik</a></li>
+        <li><a href="#contact" data-key="nav-contact">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <!-- 🔹 Przełącznik języka -->
+    <div class="lang-switch" id="lang-switch">
+      <button id="pl" class="lang-btn active">PL</button>
+      <button id="en" class="lang-btn">EN</button>
+    </div>
+  </div>
+</header>
 
   <main id="main-content">
     <section id="home" class="hero fade-in">
@@ -105,3 +111,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
