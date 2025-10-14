@@ -172,8 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// === 🔹 HAMBURGER MENU ===
 document.addEventListener("DOMContentLoaded", () => {
+  // --- cały pierwszy blok z tłumaczeniem itd. ---
+  // --- hamburger też tutaj ---
   const hamburger = document.getElementById("hamburger");
   const nav = document.querySelector("header nav");
 
@@ -182,13 +183,12 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburger.classList.toggle("active");
       nav.classList.toggle("open");
     });
-  }
 
-  // zamknij menu po kliknięciu w link
-  document.querySelectorAll("header nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      nav.classList.remove("open");
+    document.querySelectorAll("header nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        nav.classList.remove("open");
+      });
     });
-  });
+  }
 });
