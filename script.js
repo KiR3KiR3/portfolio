@@ -173,27 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // === 🔹 HAMBURGER MENU ===
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const nav = document.querySelector("header nav");
-
-  if (hamburger && nav) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      nav.classList.toggle("open");
-    });
-  }
-
-  // zamknij menu po kliknięciu w link
-  document.querySelectorAll("header nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      nav.classList.remove("open");
-    });
-  });
-});
-
-// === 🔹 HAMBURGER MENU ===
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 const langSwitch = document.getElementById("lang-switch");
