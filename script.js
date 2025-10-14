@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "welcome": "Witaj, szukasz grafika?",
       "headline": "Dobrze trafiłeś, chętnie nim zostanę.",
       "about-title": "O mnie",
-      "about-text": "Jestem grafikiem komputerowym. Tworzę różnego rodzaju projekty graficzne — miniaturki, banery, logotypy oraz inne grafiki. Każdą pracę traktuję indywidualnie, z pełnym zaangażowaniem i dbałością o szczegóły.",
+      "about-text": "Jestem grafikiem komputerowym. Tworzę różnego rodzaju projekty graficzne — miniaturki, banery, logotypy oraz inne grafiki. Każdą pracę traktuję indywidualnie, z pełnym zaangażowaniem i dbałością o szczegóły, tak aby idealnie odpowiadała potrzebom klienta.",
       "services-pricing-title": "Usługi i Cennik",
       "contact-title": "Kontakt",
       "contact-info": "Napisz do mnie: <a href='mailto:H6zardzista@gmail.com'>H6zardzista@gmail.com</a>",
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "welcome": "Hello, are you looking for a graphic designer?",
       "headline": "You've come to the right place, I'd love to stay.",
       "about-title": "About me",
-      "about-text": "I’m a graphic designer who creates thumbnails, banners, logos, and more. Each project is done with full attention to detail and creativity.",
+      "about-text": "I’m a graphic designer who creates various digital projects — thumbnails, banners, logos, and more. I approach each work individually, with full commitment and attention to detail, ensuring it perfectly fits the client’s needs.",
       "services-pricing-title": "Services & Pricing",
       "contact-title": "Contact",
       "contact-info": "Email me: <a href='mailto:H6zardzista@gmail.com'>H6zardzista@gmail.com</a>",
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.getElementById("main-content");
   const backBtn = document.getElementById("back-btn");
 
-  // języki
+  // --- języki ---
   langButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       langButtons.forEach(b => b.classList.remove("active"));
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // efekt przewijania
+  // --- efekt przewijania ---
   function showOnScroll() {
     fadeElements.forEach(el => {
       const rect = el.getBoundingClientRect();
@@ -91,19 +91,45 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", showOnScroll);
   showOnScroll();
 
-  // płynne przewijanie
+  // --- płynne przewijanie ---
+  function smoothScrollToElement(targetEl) {
+    if (!targetEl) return;
+    const headerHeight = document.querySelector("header").offsetHeight || 0;
+    const sectionTop = targetEl.getBoundingClientRect().top + window.scrollY;
+    const sectionHeight = targetEl.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollTo =
+      sectionTop - (viewportHeight / 2) + (sectionHeight / 2) - headerHeight / 2;
+    window.scrollTo({ top: scrollTo, behavior: "smooth" });
+  }
+
   document.querySelectorAll('nav a[href^="#"]').forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
       const href = link.getAttribute("href");
       const target = document.querySelector(href);
-      if (target) {
-        window.scrollTo({ top: target.offsetTop - 100, behavior: "smooth" });
+      if (!target) return;
+
+      const targetInMain = !!target.closest("#main-content");
+      const mainHidden =
+        getComputedStyle(mainContent).display === "none" ||
+        mainContent.classList.contains("hidden");
+
+      if (targetInMain && mainHidden) {
+        portfolioPage.classList.add("hidden");
+        mainContent.style.display = "";
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            smoothScrollToElement(target);
+          });
+        });
+      } else {
+        smoothScrollToElement(target);
       }
     });
   });
 
-  // portfolio
+  // --- portfolio ---
   if (openPortfolioBtn) {
     openPortfolioBtn.addEventListener("click", () => {
       mainContent.style.display = "none";
@@ -119,13 +145,50 @@ document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+
+  // --- obsługa hashów ---
+  function handleInitialHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const targetInMain = !!target.closest("#main-content");
+    const mainHidden =
+      getComputedStyle(mainContent).display === "none" ||
+      mainContent.classList.contains("hidden");
+    if (targetInMain && mainHidden) {
+      portfolioPage.classList.add("hidden");
+      mainContent.style.display = "";
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => smoothScrollToElement(target))
+      );
+    } else {
+      smoothScrollToElement(target);
+    }
+  }
+
+  if (window.location.hash) {
+    handleInitialHash();
+  }
 });
 
-// === HAMBURGER (tylko animacja) ===
-const hamburger = document.getElementById("hamburger");
+// === 🔹 HAMBURGER MENU ===
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const nav = document.querySelector("header nav");
 
-if (hamburger) {
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
+  if (hamburger && nav) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      nav.classList.toggle("open");
+    });
+  }
+
+  // zamknij menu po kliknięciu w link
+  document.querySelectorAll("header nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      nav.classList.remove("open");
+    });
   });
-}
+});
