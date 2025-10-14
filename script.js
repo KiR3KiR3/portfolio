@@ -62,26 +62,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const portfolioPage = document.getElementById("portfolio-page");
   const mainContent = document.getElementById("main-content");
   const backBtn = document.getElementById("back-btn");
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+  const langSwitch = document.getElementById("lang-switch");
 
-  // --- języki ---
+  // --- 🔹 ZMIANA JĘZYKA ---
   langButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       langButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      changeLanguage(btn.id);
+      changeLanguage(btn.dataset.lang);
     });
   });
 
   function changeLanguage(lang) {
     document.querySelectorAll("[data-key]").forEach(el => {
-      const key = el.getAttribute("data-key");
+      const key = el.dataset.key;
       if (translations[lang] && translations[lang][key]) {
         el.innerHTML = translations[lang][key];
       }
     });
   }
 
-  // --- efekt przewijania ---
+  // --- 🔹 FADE-IN ---
   function showOnScroll() {
     fadeElements.forEach(el => {
       const rect = el.getBoundingClientRect();
@@ -91,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", showOnScroll);
   showOnScroll();
 
-  // --- płynne przewijanie ---
+  // --- 🔹 SMOOTH SCROLL ---
   function smoothScrollToElement(targetEl) {
     if (!targetEl) return;
     const headerHeight = document.querySelector("header").offsetHeight || 0;
@@ -129,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- portfolio ---
+  // --- 🔹 PORTFOLIO ---
   if (openPortfolioBtn) {
     openPortfolioBtn.addEventListener("click", () => {
       mainContent.style.display = "none";
@@ -146,48 +149,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- obsługa hashów ---
-  function handleInitialHash() {
-    const hash = window.location.hash;
-    if (!hash) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    const targetInMain = !!target.closest("#main-content");
-    const mainHidden =
-      getComputedStyle(mainContent).display === "none" ||
-      mainContent.classList.contains("hidden");
-    if (targetInMain && mainHidden) {
-      portfolioPage.classList.add("hidden");
-      mainContent.style.display = "";
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => smoothScrollToElement(target))
-      );
-    } else {
-      smoothScrollToElement(target);
-    }
-  }
-
+  // --- 🔹 HASH ---
   if (window.location.hash) {
-    handleInitialHash();
+    const target = document.querySelector(window.location.hash);
+    if (target) smoothScrollToElement(target);
   }
-});
 
-// === 🔹 HAMBURGER MENU ===
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
-const langSwitch = document.getElementById("lang-switch");
+  // --- 🔹 HAMBURGER MENU ---
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+      langSwitch.classList.toggle("active");
+    });
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navMenu.classList.toggle("show");
-  langSwitch.classList.toggle("show");
-});
-
-// Zamknij menu po kliknięciu w link
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("show");
-    langSwitch.classList.remove("show");
-  });
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        langSwitch.classList.remove("active");
+      });
+    });
+  }
 });
