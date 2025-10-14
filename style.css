@@ -488,3 +488,74 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* === 🔹 HAMBURGER MENU === */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* 🔄 animacja X po kliknięciu */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* 📱 Na telefonie menu ukryte i rozwijane */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.98);
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-top: 1px solid #222;
+  }
+
+  nav ul.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .lang-switch {
+    display: none;
+  }
+
+  nav ul.show + #lang-switch {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+  }
+}
