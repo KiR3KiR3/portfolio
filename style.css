@@ -1,239 +1,399 @@
-/* ====== RESET ====== */
+:root {
+  --bg: #0a0a0a;
+  --card: #1a1a1a;
+  --accent: #d1d1d1;
+  --muted: #bfbfbf;
+}
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-}
-
-html, body {
-  font-family: "Poppins", sans-serif;
-  color: white;
-  background-color: #0d0d0d;
-  scroll-behavior: smooth;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-/* ====== HEADER / NAV ====== */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(15, 15, 15, 0.9);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
-  z-index: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.brand .title {
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
-
-nav ul li a {
-  transition: 0.3s;
-  font-weight: 500;
-}
-
-nav ul li a:hover {
-  color: #00b4ff;
-}
-
-/* ====== HAMBURGER ====== */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 21px;
-  cursor: pointer;
-  z-index: 150;
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background-color: white;
-  border-radius: 3px;
   transition: all 0.3s ease;
 }
 
-.hamburger.active span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f0f0f0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
-/* ====== HERO SECTION ====== */
-.hero {
-  min-height: 100vh;
+/* Sticky nawigacja */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  width: 100%;
+  border-bottom: 1px solid #222;
+}
+
+.nav {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(160deg, #141414 0%, #000000 100%);
-  padding: 120px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+nav ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+nav a:hover {
+  color: #fff;
+  background: #2a2a2a;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 10px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: var(--muted);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.lang-btn.active {
+  color: #fff;
+  background: #2a2a2a;
+  border-color: #fff;
+}
+
+/* Hero */
+.hero {
+  min-height: 65vh;
+  padding-top: 140px;
   text-align: center;
-  background-image: url("your-hero-image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: 
+    linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(26,26,26,1) 100%), 
+    url('https://cdn.pixabay.com/photo/2017/03/09/12/31/digital-2129480_1280.jpg') center/cover no-repeat;
 }
 
 .hero-text {
-  font-size: 2rem;
-  line-height: 1.4;
+  font-size: 42px;
   margin: 10px 0;
+  color: #f0f0f0;
+  font-weight: 600;
 }
 
-/* ====== SECTIONS ====== */
 .section {
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+  width: 92%;
+  max-width: 1100px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 32px;
 }
 
 .vertical-list {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .vertical-list li {
-  font-size: 1.2rem;
-  margin: 12px 0;
+  background: var(--card);
+  padding: 14px 18px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* ====== COMBINED LIST ====== */
-.combined-list {
-  max-width: 450px;
-  margin: 0 auto;
+.vertical-list li span {
+  color: #fff;
+}
+
+/* Efekt pojawiania się (odnawia się przy przewijaniu) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  border-top: 1px solid #222;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio-btn {
+  background: transparent;
+  color: #f0f0f0;
+  border: 1px solid #777;
+  padding: 14px 26px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.portfolio-btn:hover {
+  background: #222;
+}
+
+/* Portfolio strona */
+.hidden {
+  display: none;
+}
+
+.portfolio-page {
+  min-height: 100vh;
+  padding: 100px 10%;
+  background: #0a0a0a;
+  text-align: center;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.back-btn {
+  background: transparent;
+  color: #f0f0f0;
+  border: 1px solid #555;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #222;
+}
+
+.portfolio-table {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 800px;
   text-align: left;
+}
+
+.portfolio-table h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.table-placeholder {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  color: #888;
+  text-align: center;
+}
+
+/* 🔴 Przycisk "Zobacz portfolio" w stylu YouTube Jobs */
+.portfolio-btn {
+  font-size: 1.6rem;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff3b30, #ff5c5c); /* czerwony gradient */
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.portfolio-btn:hover {
+transform: scale(1.08);
+}
+
+/* 🔴 Przycisk "Wróć" w czerwonym stylu */
+.back-btn {
+  font-size: 1.5rem;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff3b30, #ff5c5c);
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto 30px auto; /* wycentrowanie */
+}
+
+.back-btn:hover {
+transform: scale(1.08);
+}
+
+p {
+  font-size: 1.2rem; /* domyślnie ok. 19px */
+  line-height: 1.8;  /* większy odstęp między wierszami */
+}
+
+/* 🔹 Większa czcionka w sekcji "Usługi" i "Cennik" */
+#services h2,
+#pricing h2 {
+  font-size: 2rem; /* większy nagłówek */
+  margin-bottom: 20px;
+}
+
+#services li,
+#pricing li {
+  font-size: 1.1rem; /* trochę większy tekst w liście */
+  line-height: 1.6;
+  font-weight: 500; /* lekko pogrubione */
+}
+
+/* 🔹 Połączona sekcja Usługi i Cennik */
+#services-pricing h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.combined-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .combined-list li {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 8px 0;
-}
-
-/* ====== PORTFOLIO BUTTON ====== */
-.center {
-  display: flex;
-  justify-content: center;
-}
-
-.portfolio-btn {
-  background-color: #00b4ff;
-  border: none;
-  color: white;
-  padding: 14px 28px;
-  font-size: 1.1rem;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-}
-
-.portfolio-btn:hover {
-  background-color: #0090d4;
-  transform: scale(1.05);
-}
-
-/* ====== PORTFOLIO PAGE ====== */
-.portfolio-page.hidden {
-  display: none;
-}
-
-.portfolio-page {
-  padding: 100px 20px;
-}
-
-.back-btn {
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
-  border: none;
+  align-items: center;
+  background: var(--card);
+  padding: 14px 20px;
   border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.combined-list li span:last-child {
+  color: #fff;
+}
+
+/* === 🔹 HAMBURGER MENU & MOBILE STYLING === */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
   cursor: pointer;
-  transition: transform 0.2s;
+  z-index: 1100;
 }
 
-.back-btn:hover {
-  transform: scale(1.05);
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-/* ====== MEDIA QUERIES (responsywność) ====== */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* 📱 Responsywność (tylko telefon) */
 @media (max-width: 900px) {
-  header {
-    padding: 10px 25px;
-  }
-
+  /* hamburger pokazuje się */
   .hamburger {
     display: flex;
   }
 
-  nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    background-color: #111;
+  /* ukryj menu dopóki nie otwarte */
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(15, 15, 15, 0.97);
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #333;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+  }
+
+  header nav.open {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s ease;
-    flex-direction: column;
   }
 
-  nav.active {
-    right: 0;
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  nav ul {
-    flex-direction: column;
-    gap: 25px;
+  header nav a {
+    display: block;
+    padding: 12px;
+    color: #ddd;
+    transition: background 0.2s;
+  }
+
+  header nav a:hover {
+    background: #222;
+  }
+
+  /* hero naprawione */
+  .hero {
+    min-height: 60vh;
+    background-position: center;
+    background-size: cover;
+    padding: 120px 20px 80px;
+    text-align: center;
   }
 
   .hero-text {
-    font-size: 1.4rem;
+    font-size: 24px;
+    line-height: 1.3;
+    margin-bottom: 10px;
   }
 
-  .section {
-    padding: 70px 15px;
-  }
-
-  .combined-list {
-    width: 100%;
-  }
-
-  .brand .title {
-    font-size: 1.2rem;
-  }
-
-  .hero {
-    background-position: center top;
-    padding-top: 140px;
+  /* cennik większy na mobile */
+  .pricing-list li span,
+  .combined-list li span {
+    font-size: 18px;
   }
 }
+
