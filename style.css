@@ -434,3 +434,146 @@ p {
     margin-top: 10px;
   }
 }
+
+/* === 🔹 NOWY UKŁAD NAWIGACJI === */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  position: relative;
+}
+
+.brand .title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* 🔹 nowy kontener na hamburger + język */
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 🔹 przyciski języka */
+.lang-switch {
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: #222;
+  color: #fff;
+}
+
+.lang-btn.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* 🔹 wyśrodkowanie menu na komputerze */
+nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+nav a:hover {
+  color: #fff;
+  background: #2a2a2a;
+}
+
+/* === 📱 MOBILE === */
+@media (max-width: 900px) {
+  /* hamburger + język obok siebie */
+  .top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lang-switch {
+    gap: 6px;
+  }
+
+  .lang-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  /* ukryte menu dopóki nie otwarte */
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(15, 15, 15, 0.97);
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #333;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+  }
+
+  header nav.open {
+    display: flex;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header nav a {
+    display: block;
+    padding: 12px;
+    color: #ddd;
+    transition: background 0.2s;
+  }
+
+  header nav a:hover {
+    background: #222;
+  }
+
+  /* hamburger mniejszy */
+  .hamburger {
+    width: 26px;
+    height: 20px;
+  }
+}
