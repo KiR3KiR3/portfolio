@@ -577,3 +577,79 @@ nav a:hover {
     height: 20px;
   }
 }
+
+/* === 🔹 Ułożenie elementów w nagłówku === */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* odstęp między logo a językiem */
+}
+
+nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 6px;
+}
+
+/* === 🔹 Układ mobilny === */
+@media (max-width: 900px) {
+  .nav {
+    position: relative;
+  }
+
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lang-switch {
+    display: flex;
+    gap: 4px;
+  }
+
+  /* Hamburger po prawej stronie */
+  .hamburger {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(15, 15, 15, 0.97);
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #333;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 0;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
