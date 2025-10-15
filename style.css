@@ -447,7 +447,7 @@ p {
 }
 
 .brand .title {
-  font-weight: 600;
+  font-weight: 300;
   font-size: 1.2rem;
   color: #fff;
 }
@@ -653,3 +653,4 @@ nav {
     gap: 10px;
   }
 }
+
