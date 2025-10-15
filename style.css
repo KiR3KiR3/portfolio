@@ -397,3 +397,40 @@ p {
   }
 }
 
+/* 🌐 Styl przełącznika języka */
+.lang-switch {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: #222;
+  color: #fff;
+}
+
+.lang-btn.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* 📱 Dla wersji mobilnej – język pod menu */
+@media (max-width: 900px) {
+  .lang-switch {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
