@@ -9,15 +9,19 @@
 <body>
   <header>
   <div class="nav">
-    <div class="brand">
-      <div class="title">@KiR3 Portfolio</div>
-      <div class="lang-switch">
-        <button class="lang-btn active" id="pl">PL</button>
-        <button class="lang-btn" id="en">EN</button>
+    <div class="left-section">
+      <div class="brand">
+        <div class="title">@KiR3 Portfolio</div>
+      </div>
+
+      <!-- przełącznik języka obok brand -->
+      <div class="lang-switch" id="lang-switch">
+        <button id="pl" class="lang-btn active">PL</button>
+        <button id="en" class="lang-btn">EN</button>
       </div>
     </div>
 
-    <nav>
+    <nav id="nav-menu">
       <ul>
         <li><a href="#about" data-key="nav-about">O mnie</a></li>
         <li><a href="#services-pricing" data-key="nav-services-pricing">Usługi i Cennik</a></li>
@@ -25,11 +29,9 @@
       </ul>
     </nav>
 
-    <!-- 🔹 Hamburger menu -->
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+    <!-- hamburger po prawej na mobile -->
+    <div class="hamburger" id="hamburger" aria-label="menu" aria-expanded="false">
+      <span></span><span></span><span></span>
     </div>
   </div>
 </header>
@@ -109,6 +111,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
