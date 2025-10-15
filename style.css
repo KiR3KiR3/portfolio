@@ -586,6 +586,7 @@ nav a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px 24px;
+  transform: translateX(-20px); /* przesuwa o 20px w lewo */
 }
 
 .left-section {
@@ -653,6 +654,7 @@ nav {
     gap: 10px;
   }
 }
+
 
 
 
